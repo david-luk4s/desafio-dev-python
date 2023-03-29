@@ -32,6 +32,9 @@ def test_process_transactions():
 
     for item in items:
         assert len(item.recipient.cpf) == 11
+
         assert len(item.card.number) == 12
+
         assert len(item.store.store_owner) == 14
+
         assert len(item.store.store_name) >= 18

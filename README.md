@@ -19,12 +19,12 @@ docker-compose up
 ### Teste Unitarios
 Com Docker Compose standalone:
 ```
-docker compose exec -it ...
+docker compose exec -it app pytest
 ```
 
 Com Docker Compose plugin:
 ```
-docker-compose exec -it ...
+docker-compose exec -it app pytest
 ```
 
 ### Uso via navegador de sua preferência
