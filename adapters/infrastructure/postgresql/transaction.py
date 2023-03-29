@@ -8,10 +8,10 @@ from domain.entities.transaction import TypeTransaction, Transaction
 
 class TransactionImpl:
     '''This class is implementation of transaction interface.'''
-    db_postgres : any
+    cursor : any
 
-    def __init__(self, db_postgres: any) -> None:
-        self.db_postgres = db_postgres
+    def __init__(self, cursor: any) -> None:
+        self.cursor = cursor
 
     def parse(self, tp_transaction: dict[TypeTransaction], block: str) -> list[Transaction]:
         '''Implementation of transaction interface.'''
@@ -66,7 +66,7 @@ class TransactionImpl:
                 id_type, date_occurrence, value, recipient_id, card_id, hour_occurrence, store_id)
             VALUES(%s,%s,%s,%s,%s,%s,%s);"""
 
-        rst = self.db_postgres.execute(create_transaction, (
+        rst = self.cursor.execute(create_transaction, (
             transaction.type_transaction.id_type_transaction,
             transaction.date_occurrence,
             transaction.value,
@@ -95,8 +95,8 @@ class TransactionImpl:
             inner join store as s on s.id = t.store_id
             inner join type_transaction as tt on tt.id_type=t.id_type;
         """
-        self.db_postgres.execute(get_transactions)
-        for row in self.db_postgres.fetchall():
+        self.cursor.execute(get_transactions)
+        for row in self.cursor.fetchall():
             transaction = Transaction(
                 id_transaction=row[0],
                 type_transaction=TypeTransaction(id_type_transaction=row[1],description=row[2],nature=row[3],signal=row[4]),
