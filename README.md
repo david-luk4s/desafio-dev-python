@@ -2,37 +2,35 @@
 
 ### Pré-requisitos
 
-Instale [Docker Compose plugin](https://docs.docker.com/compose/install/) ou [Docker Compose standalone](https://docs.docker.com/compose/install/other/)
+Instale [Docker Compose standalone](https://docs.docker.com/compose/install/other/) ou [Docker Compose plugin](https://docs.docker.com/compose/install/)
 
-execute o programa com Compose plugin
-
-```
-docker-compose up
-```
-
-
-ou execute o programa com Compose standalone
+execute o programa com Compose standalone
 
 ```
 docker compose up
 ```
 
-### Teste Unitarios
-Com Docker Compose plugin:
+ou execute o programa com Compose plugin
+
 ```
-docker-compose exec -it ...
+docker-compose up
 ```
 
+### Teste Unitarios
 Com Docker Compose standalone:
 ```
 docker compose exec -it ...
+```
+
+Com Docker Compose plugin:
+```
+docker-compose exec -it ...
 ```
 
 ### Uso via navegador de sua preferência
 ```
 http://127.0.0.1:8080/
 ```
-
 
 ### Uso via Curl
 - endpoint upload
