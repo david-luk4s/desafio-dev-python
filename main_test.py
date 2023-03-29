@@ -6,8 +6,8 @@ from adapters.infrastructure.postgresql.transaction import TransactionImpl
 def test_length_cnab_file():
     """Test length of cnab file"""
     f = open(file="CNAB.txt", mode="r", encoding="utf-8")
-
-    assert len(f.read().splitlines()) == 21
+    block = f.read().splitlines()
+    assert len(block) == 21
 
 
 def test_process_transactions():
@@ -29,3 +29,9 @@ def test_process_transactions():
     items = repo.service_parse(type_transactions, block.read())
 
     assert len(items) == 21
+
+    for item in items:
+        assert len(item.recipient.cpf) == 11
+        assert len(item.card.number) == 12
+        assert len(item.store.store_owner) == 14
+        assert len(item.store.store_name) >= 18
